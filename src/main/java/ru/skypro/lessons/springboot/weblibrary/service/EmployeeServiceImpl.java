@@ -7,6 +7,7 @@ import ru.skypro.lessons.springboot.weblibrary.repository.EmployeeRepository;
 
 import java.util.List;
 
+//@Service("employeeService123") имя (id) бина в контексте (spring контейнер) спринга
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -29,5 +30,34 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getAnAverageSalary() {
         return employeeRepository.getAnAverageSalary();
+    }
+
+    @Override
+    public List<Employee> getEmployees() {
+        return employeeRepository.getEmployees();
+    }
+
+    @Override
+    public void createEmployees(List<Employee> employees) {
+        employeeRepository.createEmployees(employees);
+    }
+
+    @Override
+    public Employee getEmployee(int id) {
+        return employeeRepository.getEmployee(id);
+    }
+    @Override
+    public void changeEmployeeById(int id, Employee employee) {
+        employeeRepository.changeEmployeeById(id, employee);
+    }
+
+    @Override
+    public void deleteEmployeeById(int id) {
+        employeeRepository.deleteEmployeeById(id);
+    }
+
+    @Override
+    public List<Employee> getEmployeesWithSalaryHigherThan(int salary) {
+        return employeeRepository.getEmployeesWithSalaryHigherThan(salary);
     }
 }
