@@ -1,18 +1,26 @@
 package ru.skypro.lessons.springboot.weblibrary.repository;
+
 import org.springframework.stereotype.Repository;
+import ru.skypro.lessons.springboot.weblibrary.exception.ApiException;
 import ru.skypro.lessons.springboot.weblibrary.pojo.Employee;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.nonNull;
+
 
 @Repository
-public class EmployeeRepositoryImpl implements EmployeeRepository{
-    private final List<Employee> employeeList = List.of(
-            new Employee("Катя", 105_000),
-            new Employee("Дима", 100_000),
-            new Employee("Олег", 50_000),
-            new Employee("Вика", 150_000));
+public class EmployeeRepositoryImpl implements EmployeeRepository {
+
+    private final List<Employee> employeeList = new ArrayList<>();
+
+    public EmployeeRepositoryImpl() {
+        employeeList.add(new Employee("Катя", 105_000));
+        employeeList.add(new Employee("Дима", 100_000));
+        employeeList.add(new Employee("Олег", 50_000));
+        employeeList.add(new Employee("Вика", 150_000));
+    }
 
     @Override
     public double getSumSalary() {
@@ -51,6 +59,50 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
                 .orElseThrow(() -> new RuntimeException("Сотрудники не найдены"));
         return employeeList.stream()
                 .filter(emp -> emp.getSalary() > averageSalary)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Employee> getEmployees() {
+        return employeeList;
+    }
+
+    @Override
+    public void createEmployees(List<Employee> employees) {
+        if (nonNull(employees))
+            employeeList.addAll(employees);
+    }
+
+    @Override
+    public Employee getEmployee(int id) {
+        return employeeList.stream()
+                .filter(e -> e.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new ApiException("Сотрудник не найден"));
+    }
+
+    @Override
+    public void changeEmployeeById(int id, Employee employee) {
+        Employee findEmployee = getEmployee(id);
+        if (nonNull(findEmployee)) {
+            findEmployee.setName(employee.getName());
+            findEmployee.setSalary(employee.getSalary());
+        }
+    }
+
+    @Override
+    public void deleteEmployeeById(int id) {
+        Employee employeeDelByID = employeeList.stream()
+                .filter(e -> e.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new ApiException("Сотрудник не найден"));
+        employeeList.remove(employeeDelByID);
+    }
+
+    @Override
+    public List<Employee> getEmployeesWithSalaryHigherThan(int salary) {
+        return employeeList.stream()
+                .filter(employee -> employee.getSalary() > salary)
                 .collect(Collectors.toList());
     }
 }
