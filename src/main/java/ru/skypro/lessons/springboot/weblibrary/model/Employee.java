@@ -1,4 +1,4 @@
-package ru.skypro.lessons.springboot.weblibrary.entity;
+package ru.skypro.lessons.springboot.weblibrary.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,5 +17,9 @@ public class Employee {
     private String name;
     @Column(name = "salary")
     private Integer salary;
+
+    @ManyToOne( fetch = FetchType.EAGER)
+    @JoinColumn(name = "position_id")
+    private Position position;
 
 }

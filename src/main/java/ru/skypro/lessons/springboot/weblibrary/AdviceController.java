@@ -11,7 +11,7 @@ import ru.skypro.lessons.springboot.weblibrary.pojo.Message;
 public class AdviceController {
     @ExceptionHandler
     public ResponseEntity<Message> handleApiException(ApiException apiException) {
-        return new ResponseEntity<>(new Message(apiException.getMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new Message(apiException.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
