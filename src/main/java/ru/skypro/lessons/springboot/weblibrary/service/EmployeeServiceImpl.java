@@ -2,7 +2,7 @@ package ru.skypro.lessons.springboot.weblibrary.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.skypro.lessons.springboot.weblibrary.pojo.Employee;
+import ru.skypro.lessons.springboot.weblibrary.entity.Employee;
 import ru.skypro.lessons.springboot.weblibrary.repository.EmployeeRepository;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package ru.skypro.lessons.springboot.weblibrary.service;
 
-import ru.skypro.lessons.springboot.weblibrary.pojo.Employee;
+import ru.skypro.lessons.springboot.weblibrary.entity.Employee;
 
 import java.util.List;
 

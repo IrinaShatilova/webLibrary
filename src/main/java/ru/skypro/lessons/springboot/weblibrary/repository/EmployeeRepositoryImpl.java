@@ -2,7 +2,7 @@ package ru.skypro.lessons.springboot.weblibrary.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.skypro.lessons.springboot.weblibrary.exception.ApiException;
-import ru.skypro.lessons.springboot.weblibrary.pojo.Employee;
+import ru.skypro.lessons.springboot.weblibrary.entity.Employee;
 
 import java.util.*;
 import java.util.stream.Collectors;

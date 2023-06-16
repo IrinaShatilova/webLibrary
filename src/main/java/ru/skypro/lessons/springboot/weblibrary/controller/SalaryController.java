@@ -1,12 +1,10 @@
 package ru.skypro.lessons.springboot.weblibrary.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.skypro.lessons.springboot.weblibrary.pojo.Employee;
+import ru.skypro.lessons.springboot.weblibrary.entity.Employee;
 import ru.skypro.lessons.springboot.weblibrary.service.EmployeeService;
 
 import java.util.List;
@@ -18,11 +16,10 @@ public class SalaryController {
     private final EmployeeService employeeService;
 
     @Autowired // инджект бина через интерфейс, спринг ищет имплементацию интерфейса
-   // public SalaryController(@Qualifier("employeeService123") EmployeeService employeeService) {
+
     public SalaryController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
 
     @GetMapping("/salary/sum")
     public double getSumSalary(){
