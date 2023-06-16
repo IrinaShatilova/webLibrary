@@ -7,7 +7,6 @@ import ru.skypro.lessons.springboot.weblibrary.repository.EmployeeRepository;
 
 import java.util.List;
 
-//@Service("employeeService123") имя (id) бина в контексте (spring контейнер) спринга
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -57,7 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployeesWithSalaryHigherThan(int salary) {
+    public List<Employee> getEmployeesWithSalaryHigherThan(Integer salary) {
         return employeeRepository.getEmployeesWithSalaryHigherThan(salary);
     }
 }

@@ -16,10 +16,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     private final List<Employee> employeeList = new ArrayList<>();
 
     public EmployeeRepositoryImpl() {
-        employeeList.add(new Employee("Катя", 105_000));
-        employeeList.add(new Employee("Дима", 100_000));
-        employeeList.add(new Employee("Олег", 50_000));
-        employeeList.add(new Employee("Вика", 150_000));
+
     }
 
     @Override
@@ -100,7 +97,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> getEmployeesWithSalaryHigherThan(int salary) {
+    public List<Employee> getEmployeesWithSalaryHigherThan(Integer salary) {
         return employeeList.stream()
                 .filter(employee -> employee.getSalary() > salary)
                 .collect(Collectors.toList());
