@@ -11,25 +11,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
-    @Override
-    public double getSumSalary() {
-        return employeeRepository.getSumSalary();
-    }
-
-    @Override
-    public List<Employee> getMinSalary() {
-        return employeeRepository.getMinSalary();
-    }
-
-    @Override
-    public List<Employee> getMaxSalary() {
-        return employeeRepository.getMaxSalary();
-    }
-
-    @Override
-    public List<Employee> getAnAverageSalary() {
-        return employeeRepository.getAnAverageSalary();
-    }
 
     @Override
     public List<Employee> getEmployees() {
@@ -58,5 +39,25 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getEmployeesWithSalaryHigherThan(Integer salary) {
         return employeeRepository.getEmployeesWithSalaryHigherThan(salary);
+    }
+
+    @Override
+    public double getSumSalary() {
+        return employeeRepository.getSumSalary();
+    }
+
+    @Override
+    public List<Employee> getMinSalary() {
+        return employeeRepository.getMinSalary();
+    }
+
+    @Override
+    public List<Employee> getMaxSalary() {
+        return employeeRepository.getMaxSalary();
+    }
+
+    @Override
+    public List<Employee> getAnAverageSalary() {
+        return employeeRepository.getAnAverageSalary();
     }
 }

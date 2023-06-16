@@ -5,10 +5,7 @@ import ru.skypro.lessons.springboot.weblibrary.entity.Employee;
 import java.util.List;
 
 public interface EmployeeService {
-    double getSumSalary();
-    List<Employee> getMinSalary();
-    List<Employee> getMaxSalary();
-    List<Employee> getAnAverageSalary();
+
     List<Employee> getEmployees();
 
      void createEmployees(List<Employee> employees);
@@ -18,4 +15,11 @@ public interface EmployeeService {
     void changeEmployeeById(int id, Employee employee);
     void deleteEmployeeById(int id);
     List<Employee> getEmployeesWithSalaryHigherThan(Integer salary);
+
+    double getSumSalary();
+    List<Employee> getMinSalary();
+    List<Employee> getMaxSalary();
+    List<Employee> getAnAverageSalary();
+
+
 }

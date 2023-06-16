@@ -9,7 +9,6 @@ public interface EmployeeRepository {
     List<Employee> getMinSalary();
     List<Employee> getMaxSalary();
     List<Employee> getAnAverageSalary();
-
     List<Employee> getEmployees();
 
     void createEmployees(List<Employee> employees);

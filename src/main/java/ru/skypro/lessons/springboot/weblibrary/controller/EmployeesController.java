@@ -22,10 +22,6 @@ public class EmployeesController {
     public void createEmployees(@RequestBody List<Employee> employees){
         employeeService.createEmployees(employees);
     }
-    @GetMapping
-    public List<Employee> getEmployees(){
-        return employeeService.getEmployees();
-    }
 
     @PutMapping("{id}")
     public void changeEmployeeById(@PathVariable("id") int id, @RequestBody Employee employee){
