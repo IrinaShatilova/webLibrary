@@ -1,9 +1,12 @@
 package ru.skypro.lessons.springboot.weblibrary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-import ru.skypro.lessons.springboot.weblibrary.pojo.Employee;
+import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeDTO;
 import ru.skypro.lessons.springboot.weblibrary.service.EmployeeService;
+import ru.skypro.lessons.springboot.weblibrary.service.PositionService;
 
 import java.util.List;
 
@@ -13,35 +16,47 @@ public class EmployeesController {
 
     private final EmployeeService employeeService;
 
+    private final PositionService positionService;
+
     @Autowired
-    public EmployeesController(EmployeeService employeeService) {
+    public EmployeesController(EmployeeService employeeService, PositionService positionService) {
         this.employeeService = employeeService;
+        this.positionService = positionService;
     }
 
     @PostMapping
-    public void createEmployees(@RequestBody List<Employee> employees){
+    public void createEmployees(@RequestBody List<EmployeeDTO> employees){
         employeeService.createEmployees(employees);
-    }
-    @GetMapping
-    public List<Employee> getEmployees(){
-        return employeeService.getEmployees();
     }
 
     @PutMapping("{id}")
-    public void changeEmployeeById(@PathVariable("id") int id, @RequestBody Employee employee){
+    public void changeEmployeeById(@PathVariable("id") int id, @RequestBody EmployeeDTO employee){
         employeeService.changeEmployeeById(id, employee);
     }
 
     @GetMapping("{id}")
-    public Employee getEmployeeById(@PathVariable("id") int id){
-        return employeeService.getEmployee(id);
+    public EmployeeDTO getEmployeeById(@PathVariable("id") int id){
+        return employeeService.getEmployeeById(id);
     }
     @DeleteMapping("{id}")
     public void deleteEmployeeByID(@PathVariable int id) {
         employeeService.deleteEmployeeById(id);
     }
     @GetMapping("/salaryHigherThan")
-    public List<Employee> getEmployeesWithSalaryHigherThan(@RequestParam("salary") int salary) {
+    public List<EmployeeDTO> getEmployeesWithSalaryHigherThan(@RequestParam("salary") int salary) {
         return employeeService.getEmployeesWithSalaryHigherThan(salary);
+    }
+    @GetMapping("/withHighestSalary")
+    public List<EmployeeDTO> getEmployeesWithHighestSalary () {
+        return employeeService.getEmployeesWithHighestSalary();
+    }
+    @GetMapping
+    public List<EmployeeDTO> getEmployeesByPosition(@RequestParam(value = "position", required = false) String position) {
+        return positionService.getEmployeesByPosition(position);
+    }
+
+    @GetMapping("/page")
+    public Page<EmployeeDTO> getEmployeesByPosition(Pageable pageable) {
+        return employeeService.getPageableEmployees(pageable);
     }
 }

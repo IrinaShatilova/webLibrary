@@ -1,21 +1,27 @@
 package ru.skypro.lessons.springboot.weblibrary.service;
 
-import ru.skypro.lessons.springboot.weblibrary.pojo.Employee;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeDTO;
+import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeFullInfo;
 
 import java.util.List;
 
 public interface EmployeeService {
-    double getSumSalary();
-    List<Employee> getMinSalary();
-    List<Employee> getMaxSalary();
-    List<Employee> getAnAverageSalary();
-    List<Employee> getEmployees();
 
-     void createEmployees(List<Employee> employees);
+    List<EmployeeDTO> getAllEmployees();
 
-    Employee getEmployee(int id);
+    void createEmployees(List<EmployeeDTO> employees);
 
-    void changeEmployeeById(int id, Employee employee);
+    EmployeeDTO getEmployeeById(int id);
+
+    void changeEmployeeById(int id, EmployeeDTO employee);
     void deleteEmployeeById(int id);
-    List<Employee> getEmployeesWithSalaryHigherThan(int salary);
+    List<EmployeeDTO> getEmployeesWithSalaryHigherThan(Integer salary);
+    List<EmployeeDTO> getEmployeesWithHighestSalary();
+    Page<EmployeeDTO> getPageableEmployees(Pageable pageable);
+
+    EmployeeFullInfo getEmployeeFullInfoById(int id);
+
+
 }

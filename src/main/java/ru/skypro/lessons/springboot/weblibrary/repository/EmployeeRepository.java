@@ -1,23 +1,29 @@
 package ru.skypro.lessons.springboot.weblibrary.repository;
 
-import ru.skypro.lessons.springboot.weblibrary.pojo.Employee;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
+import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeFullInfo;
+import ru.skypro.lessons.springboot.weblibrary.model.Employee;
 
 import java.util.List;
 
-public interface EmployeeRepository {
-    double getSumSalary();
-    List<Employee> getMinSalary();
-    List<Employee> getMaxSalary();
-    List<Employee> getAnAverageSalary();
+@Repository
+public interface EmployeeRepository extends CrudRepository<Employee, Integer>, PagingAndSortingRepository<Employee, Integer> {
 
-    List<Employee> getEmployees();
+    @Query(value = "SELECT * FROM employees", nativeQuery = true)
+    List<Employee> findAllEmployees();
 
-    void createEmployees(List<Employee> employees);
+    @Query(value = "SELECT * FROM employees WHERE salary > :salary", nativeQuery = true)
+    List<Employee> getEmployeesWithSalaryHigherThan(Integer salary);
 
-    Employee getEmployee(int id);
+    @Query(value = "SELECT * FROM employees WHERE salary = (SELECT MAX(salary) FROM employees)",nativeQuery = true )
+    List<Employee> getEmployeesWithHighestSalary();
 
-    void changeEmployeeById(int id, Employee employee);
-    void deleteEmployeeById(int id);
-    List<Employee> getEmployeesWithSalaryHigherThan(int salary);
-
+    @Query(value = "SELECT new ru.skypro.lessons.springboot.weblibrary.dto." +
+            "EmployeeFullInfo(e.name, e.salary, p.position) " +
+            "FROM Employee e join fetch Position p " +
+            "WHERE e.position = p AND e.id = ?1")
+    EmployeeFullInfo getEmployeeFullInfoById(int id);
 }
