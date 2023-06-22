@@ -19,19 +19,19 @@ public class Report {
     private int id;
     @Lob
     @Column(columnDefinition = "oid")
-    private String file;
+    private String report;
     @CreationTimestamp
     @Column(updatable = false)
     private Instant createAt;
 
-    public Report(int id, String file, Instant createAt) {
+    public Report(int id, String report, Instant createAt) {
         this.id = id;
-        this.file = file;
+        this.report = report;
         this.createAt = createAt;
     }
 
-    public Report(String file) {
-        this.file = file;
+    public Report(String report) {
+        this.report = report;
 
     }
 
