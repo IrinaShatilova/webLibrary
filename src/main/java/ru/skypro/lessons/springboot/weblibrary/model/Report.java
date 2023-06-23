@@ -2,11 +2,12 @@ package ru.skypro.lessons.springboot.weblibrary.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-
 import java.time.Instant;
+
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -15,11 +16,12 @@ import java.time.Instant;
 @Table(name = "reports")
 public class Report {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Lob
-    @Column(columnDefinition = "oid")
+    @Column(columnDefinition = "TEXT")
     private String report;
+
     @CreationTimestamp
     @Column(updatable = false)
     private Instant createAt;
@@ -32,7 +34,6 @@ public class Report {
 
     public Report(String report) {
         this.report = report;
-
     }
 
 }

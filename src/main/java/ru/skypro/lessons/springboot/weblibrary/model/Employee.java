@@ -11,6 +11,7 @@ import lombok.*;
 @Table(name = "employees")
 public class Employee {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Integer id;
     @Column(name = "name")
