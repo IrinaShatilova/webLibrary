@@ -22,17 +22,25 @@ public class Report {
     @Column(columnDefinition = "TEXT")
     private String report;
 
+    @Column
+    private String filePath;
+
     @CreationTimestamp
     @Column(updatable = false)
     private Instant createAt;
 
-    public Report(int id, String report, Instant createAt) {
+    public Report(int id, String report, String filePath, Instant createAt) {
         this.id = id;
         this.report = report;
+        this.filePath = filePath;
         this.createAt = createAt;
     }
 
     public Report(String report) {
+        this.report = report;
+    }
+    public Report(String report, String filePath) {
+        this.filePath = filePath;
         this.report = report;
     }
 

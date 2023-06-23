@@ -10,7 +10,6 @@ import ru.skypro.lessons.springboot.weblibrary.service.ReportService;
 @RequiredArgsConstructor
 public class ReportController {
 
-    //    private final EmployeeService employeeService;
     private final ReportService reportService;
 
     @PostMapping()
@@ -21,5 +20,15 @@ public class ReportController {
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public byte[] getReportById(@PathVariable("id") int id) {
         return reportService.getReportById(id);
+    }
+
+    @PostMapping("/disk")
+    public int formReportFromDisk() {
+        return reportService.formReportFromDisk();
+    }
+
+    @GetMapping(value = "{id}/disk", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public byte[] getReportFromDiskById(@PathVariable("id") int id){
+        return reportService.getReportFromDiskById(id);
     }
 }

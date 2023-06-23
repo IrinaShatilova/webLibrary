@@ -12,6 +12,4 @@ import java.util.List;
 public class ReportsDTO {
 
     private List<ReportDTO> reports;
-
-
 }

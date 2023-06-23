@@ -6,4 +6,8 @@ public interface ReportService {
     int formReportAndGetId();
 
     byte[] getReportById(int id);
+
+    int formReportFromDisk ();
+
+    public byte[] getReportFromDiskById(int id);
 }
