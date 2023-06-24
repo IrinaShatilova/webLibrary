@@ -3,6 +3,7 @@ package ru.skypro.lessons.springboot.weblibrary.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.skypro.lessons.springboot.weblibrary.dto.ReportDTO;
 import ru.skypro.lessons.springboot.weblibrary.dto.ReportsDTO;
@@ -88,24 +89,14 @@ public class ReportServiceImpl implements ReportService {
     }
 
     private void writeJsonToFile(String json, String filePath) throws IOException {
-        FileWriter fileWriter = null;
-        BufferedWriter bufferedWriter = null;
-        try {
-            fileWriter = new FileWriter(filePath);
-            bufferedWriter = new BufferedWriter(fileWriter);
-            bufferedWriter.write(json);
-        } finally {
-            if (bufferedWriter != null) {
-                bufferedWriter.close();
-            }
-            if (fileWriter != null) {
-                fileWriter.close();
-            }
-        }
+        Files.write(Paths.get(filePath), json.getBytes());
     }
+    @Value("${reports.file-path}")
+    private String directoryPath;
     private String generateFilePath() {
-        String directoryPath = "C:\\Users\\shati\\IdeaProjects\\REPORTS-06-2023";
+
         String fileName = "reportFile-" + UUID.randomUUID().toString() + ".txt";
         return Paths.get(directoryPath, fileName).toString();
     }
+
 }

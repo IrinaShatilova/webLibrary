@@ -14,7 +14,7 @@ public class AdviceController {
     @ExceptionHandler
     public ResponseEntity<Message> handleApiException(ApiException apiException) {
         log.error("Ошибка в апи", apiException);
-        return new ResponseEntity<>(new Message(apiException.getMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new Message(apiException.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler
