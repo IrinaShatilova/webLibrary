@@ -2,6 +2,7 @@ package ru.skypro.lessons.springboot.weblibrary.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeDTO;
 import ru.skypro.lessons.springboot.weblibrary.dto.EmployeeFullInfo;
 
@@ -23,5 +24,6 @@ public interface EmployeeService {
 
     EmployeeFullInfo getEmployeeFullInfoById(int id);
 
+    void uploadEmployeesFromFile (MultipartFile report);
 
 }
