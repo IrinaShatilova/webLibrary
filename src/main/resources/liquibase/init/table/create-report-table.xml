@@ -24,7 +24,7 @@
             <column name="file_path" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="create_at" type="TIMESTAMP"/>
+            <column name="created_at" type="TIMESTAMP"/>
         </createTable>
 
     </changeSet>

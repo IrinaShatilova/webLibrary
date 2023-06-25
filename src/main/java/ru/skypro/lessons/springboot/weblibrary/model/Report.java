@@ -22,11 +22,11 @@ public class Report {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String report;
 
-    @Column(name="file_path",nullable = false, length = 255)
+    @Column(name="file_path",nullable = false)
     private String filePath;
 
     @CreationTimestamp
-    @Column(updatable = false, name = "creat_at",nullable = false)
+    @Column(updatable = false, name = "created_at",nullable = false)
     private Instant createAt;
 
     public Report(int id, String report, String filePath, Instant createAt) {
