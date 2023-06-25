@@ -19,14 +19,14 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Lob
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String report;
 
-    @Column
+    @Column(name="file_path",nullable = false)
     private String filePath;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, name = "created_at",nullable = false)
     private Instant createAt;
 
     public Report(int id, String report, String filePath, Instant createAt) {

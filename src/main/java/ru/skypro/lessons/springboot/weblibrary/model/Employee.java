@@ -14,7 +14,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 16)
     private String name;
     @Column(name = "salary")
     private Integer salary;

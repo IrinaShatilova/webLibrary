@@ -13,7 +13,7 @@ public class EmployeeDTO {
     private Integer id;
 
     private String name;
-    //   @Positive(message = "Отрицательное")
+
     private Integer salary;
 
     // Метод для преобразования сущности Employee в объект EmployeeDTO
