@@ -18,7 +18,7 @@ public class Position {
     @Column(name = "position_id")
     private Integer position_id;
 
-    @Column(name = "position")
+    @Column(name = "position", nullable = false, length = 16)
     private String position;
 
     @OneToMany(mappedBy = "position", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
